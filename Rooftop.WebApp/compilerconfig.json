@@ -12,5 +12,12 @@
     "minify": {
       "enabled": false
     }
+  },
+  {
+    "outputFile": "wwwroot/backend/font/boxicons.css",
+    "inputFile": "wwwroot/backend/font/boxicons.scss",
+    "minify": {
+      "enabled": false
+    }
   }
 ]

@@ -99,6 +99,27 @@
         "scss/utilities/_api.scss",
         "scss/vendor/_rfs.scss"
       ]
+    },
+    {
+      "library": "boxicons@2.1.4",
+      "destination": "wwwroot/lib/boxicons/",
+      "files": [
+        "fonts/boxicons.eot",
+        "fonts/boxicons.svg",
+        "fonts/boxicons.ttf",
+        "fonts/boxicons.woff",
+        "fonts/boxicons.woff2",
+        "css/animations.css",
+        "css/boxicons.css",
+        "css/boxicons.min.css",
+        "css/transformations.css"
+      ]
     }
-  ]
+  ,
+{
+  "provider": "unpkg",
+  "library": "poper@0.1.1",
+  "destination": "wwwroot/lib/poper/"
+}
+]
 }

@@ -1,0 +1,14 @@
+﻿@import '../../lib/boxicons/css/boxicons.css';
+.bx {
+  vertical-align: middle;
+  font-size: 1.15rem;
+  line-height: 1;
+}
+
+@font-face {
+  font-family: "boxicons";
+  font-weight: normal;
+  font-style: normal;
+  src: url("../../lib/boxicons/fonts/boxicons.eot") format("embedded-opentype");
+  src: url("lib/boxicons/fonts/boxicons.eot") format("embedded-opentype"), url("lib/boxicons/fonts/boxicons.woff2") format("woff2"), url("lib/boxicons/fonts/boxicons.woff") format("woff"), url("lib/boxicons/fonts/boxicons.ttf") format("truetype");
+}
