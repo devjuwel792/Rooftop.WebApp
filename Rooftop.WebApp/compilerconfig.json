@@ -1,0 +1,16 @@
+﻿[
+  {
+    "outputFile": "wwwroot/backend/vendors/css/core.css",
+    "inputFile": "wwwroot/backend/vendors/scss/core.scss",
+    "minify": {
+      "enabled": false
+    }
+  },
+  {
+    "outputFile": "wwwroot/backend/vendors/css/theme-default.css",
+    "inputFile": "wwwroot/backend/vendors/scss/theme-default.scss",
+    "minify": {
+      "enabled": false
+    }
+  }
+]

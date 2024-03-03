@@ -1,0 +1,44 @@
+
+@import "../../../lib/bootstrap/dist/scss/mixins/banner";
+@include bsBanner('');
+
+@import '_bootstrap-extended/include';
+
+// Import bootstrap core scss from node_module
+// ! Utilities are customized and added in bootstrap-extended
+
+// Layout & components
+@import '../../../lib/bootstrap/dist/scss/root';
+@import '../../../lib/bootstrap/dist/scss/reboot';
+@import '../../../lib/bootstrap/dist/scss/type';
+@import '../../../lib/bootstrap/dist/scss/images';
+@import '../../../lib/bootstrap/dist/scss/containers';
+@import '../../../lib/bootstrap/dist/scss/grid';
+@import '../../../lib/bootstrap/dist/scss/tables';
+@import '../../../lib/bootstrap/dist/scss/forms';
+@import '../../../lib/bootstrap/dist/scss/buttons';
+@import '../../../lib/bootstrap/dist/scss/transitions';
+@import '../../../lib/bootstrap/dist/scss/dropdown';
+@import '../../../lib/bootstrap/dist/scss/button-group';
+@import '../../../lib/bootstrap/dist/scss/nav';
+@import '../../../lib/bootstrap/dist/scss/navbar';
+@import '../../../lib/bootstrap/dist/scss/card';
+@import '../../../lib/bootstrap/dist/scss/accordion';
+@import '../../../lib/bootstrap/dist/scss/breadcrumb';
+@import '../../../lib/bootstrap/dist/scss/pagination';
+@import '../../../lib/bootstrap/dist/scss/badge';
+@import '../../../lib/bootstrap/dist/scss/alert';
+@import '../../../lib/bootstrap/dist/scss/progress';
+@import '../../../lib/bootstrap/dist/scss/list-group';
+@import '../../../lib/bootstrap/dist/scss/close';
+@import '../../../lib/bootstrap/dist/scss/toasts';
+@import '../../../lib/bootstrap/dist/scss/modal';
+@import '../../../lib/bootstrap/dist/scss/tooltip';
+@import '../../../lib/bootstrap/dist/scss/popover';
+@import '../../../lib/bootstrap/dist/scss/carousel';
+@import '../../../lib/bootstrap/dist/scss/spinners';
+@import '../../../lib/bootstrap/dist/scss/offcanvas';
+@import '../../../lib/bootstrap/dist/scss/placeholders';
+
+// Helpers
+@import '../../../lib/bootstrap/dist/scss/helpers';
