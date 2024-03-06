@@ -19,5 +19,9 @@
     "minify": {
       "enabled": false
     }
+  },
+  {
+    "outputFile": "wwwroot/backend/vendors/scss/pages/page-auth.css",
+    "inputFile": "wwwroot/backend/vendors/scss/pages/page-auth.scss"
   }
 ]

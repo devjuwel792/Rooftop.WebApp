@@ -1,0 +1,75 @@
+﻿@model Rooftop.WebApp.ViewModel.UserVm
+
+
+
+
+<!-- Content -->
+
+<div class="container-xxl">
+    <div class="authentication-wrapper authentication-basic container-p-y">
+        <div class="authentication-inner">
+            <!-- Register Card -->
+            <div class="card">
+                <div class="card-body">
+                    <!-- Logo -->
+                    <div class="app-brand justify-content-center">
+                        <a asp-action="Index" asp-controller="Home" class="app-brand-link gap-2">
+                            <h2 class="app-brand-logo demo">
+                                Root Top
+                            </h2>
+                            <span class="app-brand-text demo text-body fw-bold"></span>
+                        </a>
+                    </div>
+                    <!-- /Logo -->
+                    <h4 class="mb-2">Adventure starts here 🚀</h4>
+                    <p class="mb-4">Make your app management easy and fun!</p>
+
+                    <form asp-action="CreateOrEditUser" class="mb-3" >
+                        <div class="mb-3">
+                            <label asp-for="UserName" class="form-label"></label>
+                            <input type="text"
+                                   class="form-control"
+                                   asp-for="UserName"
+                                   name="username"
+                                   placeholder="Enter your username"
+                                   autofocus />
+                        </div>
+                        <span asp-validation-for="UserName" class="text-danger"></span>
+                        <div class="mb-3">
+                            <label asp-for="Email" class="form-label"></label>
+                            <input type="text" class="form-control" id="email" name="email" placeholder="Enter your email" />
+                        </div>
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                        <div class="mb-3 form-password-toggle">
+                            <label class="form-label" asp-for="Password">Password</label>
+                            <div class="input-group input-group-merge">
+                                <input type="password"
+                                       asp-for="Password"
+                                      
+                                       class="form-control"
+                                       name="password"
+                                       placeholder="Enter Your Password"
+                                       aria-describedby="password" />
+                                <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
+                            </div>
+                        </div>
+                        <span asp-validation-for="Password" class="text-danger"></span>
+
+                      
+                        <button class="btn btn-primary d-grid w-100">Sign up</button>
+                    </form>
+
+                    <p class="text-center">
+                        <span>Already have an account?</span>
+                        <a href="auth-login-basic.html">
+                            <span>Sign in instead</span>
+                        </a>
+                    </p>
+                </div>
+            </div>
+            <!-- Register Card -->
+        </div>
+    </div>
+</div>
+
+<!-- / Content -->
