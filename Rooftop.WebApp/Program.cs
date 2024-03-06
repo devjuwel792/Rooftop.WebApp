@@ -16,8 +16,6 @@ builder.Services.Scan(x => x.FromAssemblyOf<ICore>()
 .WithScopedLifetime());
 
 
-
-
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
