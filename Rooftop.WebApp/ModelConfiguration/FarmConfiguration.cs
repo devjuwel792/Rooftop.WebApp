@@ -10,5 +10,6 @@ public class FarmConfiguration : IEntityTypeConfiguration<farm>
     {
         builder.ToTable(nameof(farm));
         builder.HasKey(x => x.Id);
+        builder.HasOne(x => x.HouseOwners).WithMany(x => x.Farms).HasForeignKey(x => x.HouseOwnersId).OnDelete(DeleteBehavior.Restrict);
     }
 }

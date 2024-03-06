@@ -1,7 +1,5 @@
 ﻿@model Rooftop.WebApp.ViewModel.UserVm
 
-
-
 <!-- Content -->
 
 <div class="container-xxl">
@@ -28,10 +26,9 @@
                             <label asp-for="UserName" class="form-label"></label>
                             <input type="text"
                                    class="form-control"
-                                   asp-for="UserName"
-                                   
+                                   asp-for="UserName"                                   
                                    placeholder="Enter your username"
-                                    />
+                        />
                         </div>
                         <span asp-validation-for="UserName" class="text-danger"></span>
                         <div class="mb-3">

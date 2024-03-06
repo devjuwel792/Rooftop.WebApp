@@ -15,4 +15,6 @@ public class farm
     public string GoogleMap { get; set; }
     public string SomeDetail { get; set; }
     public string MoreDetail { get; set; }
+    public int HouseOwnersId { get; set; }
+    public HouseOwners HouseOwners { get; set; }    
 }

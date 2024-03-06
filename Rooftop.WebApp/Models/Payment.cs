@@ -8,6 +8,6 @@ public class Payment
     public bool IsPaymentConfirmed { get; set; }
     public farm CartItems { get; set; }
     public DateTime? OrderTime { get; set; }
-    public int userId { get; set; }
+    public int UserId { get; set; }
     public User User { get; set; }
 }
