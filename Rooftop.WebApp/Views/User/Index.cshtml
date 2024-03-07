@@ -1,0 +1,75 @@
+﻿@model IEnumerable<Rooftop.WebApp.ViewModel.UserVm>
+
+
+<a asp-action="CreateOrEditUser" class="btn btn-primary btn-sm text-white mb-4">Add New User</a>
+
+<!-- Basic Bootstrap Table -->
+<div class="card">
+    <h5 class="card-header">User Table</h5>
+    <div class="table-responsive text-nowrap ">
+        <table class="table text-center">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.UserName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Email)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Password)
+                    </th>
+                    <th>
+                        Actions
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody class="table-border-bottom-0">
+            @{
+                
+                    if (Model != null)
+                    {
+
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.UserName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Email)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Password)
+                                </td>
+
+                                <td>
+                                    <div class="dropdown">
+                                        <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                                            <i class="bx bx-dots-vertical-rounded"></i>
+                                        </button>
+                                        <div class="dropdown-menu">
+                                            <a asp-action="CreateOrEditUser" asp-route-id="@item.Id" class="dropdown-item"><i class="bx bx-edit-alt me-1"></i> Edit</a>
+                                            <a asp-action="Delete" asp-route-id="@item.Id" class="dropdown-item"><i class="bx bx-trash me-1"></i> Delete</a>
+                                        </div>
+                                    </div>
+                                </td>
+
+                            </tr>
+                        }
+
+                    }
+
+
+                }
+            </tbody>
+        </table>
+        @if (Model == null)
+        {
+            <div class="text-danger text-center my-2">User Not Found</div>
+        }
+
+    </div>
+</div>
+<!--/ Basic Bootstrap Table -->

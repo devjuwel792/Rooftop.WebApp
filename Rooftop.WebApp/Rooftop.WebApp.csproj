@@ -11,14 +11,15 @@
   </ItemGroup>
 
   <ItemGroup>
+    <_ContentIncludedByDefault Remove="wwwroot\backend\vendors\scss\pages\page-auth.css" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="compilerconfig.json" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Migrations\" />
-    <Folder Include="ModelConfiguration\" />
-    <Folder Include="RepositoryService\" />
-    <Folder Include="ViewModel\" />
     <Folder Include="wwwroot\backend\vendors\css\" />
     <Folder Include="wwwroot\img\" />
   </ItemGroup>
