@@ -17,12 +17,12 @@ public class UserController : Controller
     public async Task<IActionResult> Index()
     {
         var data =await userRepository.GetAllAsync();
-        ViewBag.path = HttpContext.Request.Path;
+       
         return View(data);
     }
     public async Task<ActionResult<UserVm>> CreateOrEditUser(int id,CancellationToken cancellationToken)
     {
-
+        ViewBag.path = HttpContext.Request.PathBase + HttpContext.Request.Path + HttpContext.Request.QueryString;
         if (id == 0)
         {
             return View(new UserVm());
@@ -51,6 +51,7 @@ public class UserController : Controller
     }
     public async Task<ActionResult<UserVm>> Delete(int id, CancellationToken cancellation)
     {
+        
         if (id != 0)
         {
             await userRepository.DeleteAsync(id, cancellation);

@@ -8,4 +8,5 @@ namespace Rooftop.WebApp.RepositoryService;
 
 public class UserRepository(ApplicationDbContext dbContext, IMapper mapper) : RepositoryService<User, UserVm>(dbContext, mapper), IUserRepository
 {
+    
 }

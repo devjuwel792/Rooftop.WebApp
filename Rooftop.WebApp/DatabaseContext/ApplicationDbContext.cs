@@ -14,4 +14,6 @@ public class ApplicationDbContext(DbContextOptions options) : DbContext(options)
 public DbSet<Rooftop.WebApp.Models.User> User { get; set; } = default!;
 
 public DbSet<Rooftop.WebApp.ViewModel.UserVm> UserVm { get; set; } = default!;
+
+public DbSet<Rooftop.WebApp.ViewModel.HouseOwnerVm> HouseOwnerVm { get; set; } = default!;
 }
