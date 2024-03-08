@@ -3,6 +3,7 @@
 using Rooftop.WebApp.DatabaseContext;
 using Rooftop.WebApp.RepositoryService;
 using Rooftop.WebApp.ViewModel;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Rooftop.WebApp.Controllers;
 
@@ -10,17 +11,17 @@ public class HouseOwnerController : Controller
 {
     private readonly IHouseOwnerRepository houseOwnerRepository;
 
-    public ApplicationDbContext A { get; }
+  
 
-    public HouseOwnerController(IHouseOwnerRepository houseOwnerRepository,ApplicationDbContext a)
+    public HouseOwnerController(IHouseOwnerRepository houseOwnerRepository)
     {
         this.houseOwnerRepository = houseOwnerRepository;
-        A = a;
+
     }
     public async Task<IActionResult> Index()
     {
         var data = await houseOwnerRepository.GetAllAsync();
-        ViewBag.juwel = "my name is juwel";
+        
         return View(data);
     }
     public async Task<ActionResult<HouseOwnerVm>> CreateOrEditRoofTop(int id, CancellationToken cancellationToken)
@@ -32,7 +33,9 @@ public class HouseOwnerController : Controller
         }
         else
         {
-            return View(await houseOwnerRepository.GetByIdAsync(id, cancellationToken));
+            var data = await houseOwnerRepository.GetByIdAsync(id, cancellationToken);
+            data.Password = null;
+            return View(data);
         }
 
     }

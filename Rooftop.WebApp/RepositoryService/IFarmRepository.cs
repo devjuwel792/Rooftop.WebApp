@@ -7,5 +7,5 @@ namespace Rooftop.WebApp.RepositoryService;
 
 public interface IFarmRepository : IRepositoryService<farm, FarmVm>
 {
-    Task<ActionResult<FarmVm>> GetHouseOwnerFarm();
+   List<farm> GetHouseOwnerFarmAsync(int id);
 }

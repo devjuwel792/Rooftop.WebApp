@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Rooftop.WebApp.DatabaseContext;
 using Rooftop.WebApp.Models;
 using Rooftop.WebApp.Service;
@@ -9,8 +9,10 @@ namespace Rooftop.WebApp.RepositoryService;
 
 public class FarmRepository(ApplicationDbContext dbContext, IMapper mapper) : RepositoryService<farm, FarmVm>(dbContext, mapper), IFarmRepository
 {
-    public Task<ActionResult<FarmVm>> GetHouseOwnerFarm()
+    public  List<farm> GetHouseOwnerFarmAsync(int id)
     {
-        throw new NotImplementedException();
+        var data =  DbSet.Where(x => x.HouseOwnersId == id).ToList();
+        
+        return data;
     }
 }

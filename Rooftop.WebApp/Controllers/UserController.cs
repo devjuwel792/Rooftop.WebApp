@@ -30,7 +30,9 @@ public class UserController : Controller
         }
         else
         {
-            return View(await userRepository.GetByIdAsync(id, cancellationToken));
+            var data = await userRepository.GetByIdAsync(id, cancellationToken);
+            data.Password = null;
+            return View(data);
         }
         
     }

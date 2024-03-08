@@ -5,33 +5,88 @@
     Layout = "~/Views/Shared/Backend/_Layout.cshtml";
 }
 
-<h1>Details</h1>
+<h1> @Html.DisplayFor(model => model.Name)'s Details</h1>
 
 <div>
-    <h4>HouseOwnerVm</h4>
+    
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Name)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
+
             @Html.DisplayFor(model => model.Name)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
+           
             @Html.DisplayNameFor(model => model.Email)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Email)
+        <dd class="col-sm-10">
+            <a href="mailto:@Html.DisplayFor(model => model.Email)"> @Html.DisplayFor(model => model.Email)</a>
+           
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Password)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Password)
-        </dd>
+       
+      
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a class="badge bg-label-success" asp-action="CreateOrEditRoofTop" asp-route-id="@Model?.Id">Edit</a> 
+    <a class="badge bg-label-secondary" asp-action="Index">Back to List</a>
+    
 </div>
+
+<hr/>
+<h3 class="my-5 text-center">@Html.DisplayFor(model => model.Name)'s Roof Top</h3>
+
+<div class="mt-3 container " >
+    <div class="row" id="farmListings">
+      
+    </div>
+    <!-- Cards will be dynamically added here -->
+    @* <img src="~/img/most beautiful rooftop bars and restaurants.webp" /> *@
+</div>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+
+    }
+    <script>
+
+        $(document).ready(function () {
+
+            $.get('/farm/test/@Model?.Id', function (data) {
+
+        $.each(data, function (index, farm) {
+            
+        var farmcard = ` <div class="col-md-6 col-lg-3 mb-3">
+        <div class="card h-100">
+                        <img class="card-img-top" src="@Url.Content("~/img/most beautiful rooftop bars and restaurants.webp")" alt="Card image cap" />
+        <div class="card-body">
+        <h5 class="card-title">${farm.name}</h5>
+                <div class="row mb-2">
+                                        <div class="col-6 ">  <i class="bx bxs-user"></i><span> @Html.DisplayFor(model => model.Name)</span> </div>
+                                <div class="col-6"><i class='bx bx-current-location'></i> ${farm.location}</div>
+            </div>
+        <div>
+        </div>
+        <p class="card-text">
+       ${farm.someDetail}
+        </p>
+                <a href="@Url.Action("Details","Farm")/${farm.id}"  class="btn btn-outline-primary">show Mero</a>
+        </div>
+        </div>
+        </div>`
+       
+        $('#farmListings').append(farmcard);
+                });
+              
+               
+            });
+
+
+        });
+
+    </script>
+
+}
