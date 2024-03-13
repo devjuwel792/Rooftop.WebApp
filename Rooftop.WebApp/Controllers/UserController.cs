@@ -16,13 +16,22 @@ public class UserController : Controller
     }
     public async Task<IActionResult> Index()
     {
-        var data =await userRepository.GetAllAsync();
-       
-        return View(data);
+
+        var user = HttpContext.Session.GetString("adminEmail");
+        if (user != null)
+        {
+
+            var data = await userRepository.GetAllAsync();
+
+            return View(data);
+        }
+
+
+        return RedirectToAction("Login", "Admin");
+
     }
-    public async Task<ActionResult<UserVm>> CreateOrEditUser(int id,CancellationToken cancellationToken)
+    public async Task<ActionResult<UserVm>> CreateOrEditUser(int id, CancellationToken cancellationToken)
     {
-        ViewBag.path = HttpContext.Request.PathBase + HttpContext.Request.Path + HttpContext.Request.QueryString;
         if (id == 0)
         {
             return View(new UserVm());
@@ -34,7 +43,7 @@ public class UserController : Controller
             data.Password = null;
             return View(data);
         }
-        
+
     }
     [HttpPost]
     public async Task<ActionResult<UserVm>> CreateOrEditUser(int id, UserVm userVm, CancellationToken cancellation)
@@ -53,16 +62,25 @@ public class UserController : Controller
     }
     public async Task<ActionResult<UserVm>> Delete(int id, CancellationToken cancellation)
     {
-        
-        if (id != 0)
+
+        var user = HttpContext.Session.GetString("adminEmail");
+        if (user != null)
         {
-            await userRepository.DeleteAsync(id, cancellation);
-            return RedirectToAction(nameof(Index));
+            if (id != 0)
+            {
+                await userRepository.DeleteAsync(id, cancellation);
+                return RedirectToAction(nameof(Index));
+            }
+            else
+            {
+                return RedirectToAction(nameof(Index));
+            }
+
         }
-        else
-        {
-            return RedirectToAction(nameof(Index));
-        }
+
+
+        return RedirectToAction("Login", "Admin");
+
     }
 
 }

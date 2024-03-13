@@ -1,6 +1,8 @@
-﻿namespace Rooftop.WebApp.Models;
+﻿using Rooftop.WebApp.Models;
 
-public class Payment
+namespace Rooftop.WebApp.ViewModel;
+
+public class PaymentVm
 {
     public int Id { get; set; }
     public string TrasnsId { get; set; }

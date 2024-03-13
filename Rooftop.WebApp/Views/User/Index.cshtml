@@ -1,6 +1,9 @@
 ﻿@model IEnumerable<Rooftop.WebApp.ViewModel.UserVm>
 
-
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/Backend/_Layout.cshtml";
+}
 <a asp-action="CreateOrEditUser" class="btn btn-primary btn-sm text-white mb-4">Add New User</a>
 
 <!-- Basic Bootstrap Table -->

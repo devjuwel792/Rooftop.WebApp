@@ -1,5 +1,6 @@
 ﻿@model Rooftop.WebApp.ViewModel.FarmVm
-
+@using Microsoft.AspNetCore.Http;
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor accessor
 @{
     ViewData["Title"] = "CreateOrEditRoofTop";
     Layout = "~/Views/Shared/Backend/_Layout.cshtml";
@@ -19,7 +20,7 @@
                 <h5 class="card-header">Profile Details</h5>
 
                 <!-- Account -->
-                <form asp-action="CreateOrEditRoofTop" asp-controller="Farm" method="post" enctype="multipart/form-data" >
+                <form asp-action="CreateOrEditRoofTop" asp-controller="Farm" method="post" enctype="multipart/form-data">
                     @*  <div class="card-body">
                     <div class="d-flex align-items-start align-items-sm-center gap-4">
                     <img src="../assets/img/avatars/1.png"
@@ -48,13 +49,19 @@
                     <div class="card-body">
 
                         <div class="row">
-                            <div class="mb-3 col-md-6">
-                                <label asp-for="HouseOwnersId" class="form-label"></label>
-                                <select asp-for="HouseOwnersId" asp-items="@ViewBag.HouseOwners" class="select2 form-select" autofocus>
-                                    <option>--Select House Owner--</option>
+                            '
+                            @if (accessor.HttpContext.Session.GetString("adminEmail") != null)
+                            {
+                                <div class="mb-3 col-md-6">
+                                    <label asp-for="HouseOwnersId" class="form-label"></label>
+                                    <select asp-for="HouseOwnersId" asp-items="@ViewBag.HouseOwners" class="select2 form-select" autofocus>
+                                        <option>--Select House Owner--</option>
 
-                                </select>
-                            </div>
+                                    </select>
+                                </div>
+
+                            }
+
                             <div class="mb-3 col-md-6">
                                 <label asp-for="Name" class="form-label">Name</label>
                                 <input asp-for="Name" class="form-control" placeholder="Enter Farm Name" />
@@ -66,15 +73,15 @@
                             </div>
                             <div class="mb-3 col-md-6">
                                 <label asp-for="Phone" class="form-label"></label>
-                                <input asp-for="Phone" class="form-control"placeholder="Enter Your Phone" />
+                                <input asp-for="Phone" class="form-control" placeholder="Enter Your Phone" />
                             </div>
                             <div class="mb-3 col-md-6">
                                 <label asp-for="price" class="form-label"></label>
-                                <input asp-for="price" class="form-control" placeholder="Enter Farm Price"/>
+                                <input asp-for="price" class="form-control" placeholder="Enter Farm Price" />
                             </div>
                             <div class="mb-3 col-md-6">
                                 <label asp-for="SquareFeet" class="form-label"></label>
-                                <input asp-for="SquareFeet" class="form-control" placeholder="Enter Your Farm size" />
+                                <input type="number" asp-for="SquareFeet" class="form-control" placeholder="Enter Your Farm size" />
 
                             </div>
                             <div class="mb-3 col-md-6">
@@ -87,19 +94,19 @@
                             </div>
                             <div class="mb-3 col-md-6">
                                 <label asp-for="SomeDetail" class="form-label"></label>
-                                <input asp-for="SomeDetail" class="form-control" placeholder="Enter Some detail"/>
-                            </div>  
+                                <input asp-for="SomeDetail" class="form-control" placeholder="Enter Some detail" />
+                            </div>
                             <div class="mb-3 col-md-6">
                                 <label asp-for="Image1" class="form-label"></label>
-                                <input type="file" name="image1" asp-for="Image1" class="form-control" placeholder="Enter Some detail" />
+                                <input type="file" name="photo1" asp-for="Image1" class="form-control" placeholder="Enter Feature Image" />
                             </div>
                             <div class="mb-3 col-md-6">
                                 <label asp-for="Image2" class="form-label"></label>
-                                <input asp-for="Image2" class="form-control" placeholder="Enter Some detail"/>
-                            </div> 
+                                <input type="file" name="photo2" asp-for="Image2" class="form-control" placeholder="Enter Image 2" />
+                            </div>
                             <div class="mb-3 col-md-6">
                                 <label asp-for="Image3" class="form-label"></label>
-                                <input  asp-for="Image3" class="form-control" placeholder="Enter Some detail"/>
+                                <input type="file" name="photo3" asp-for="Image3" class="form-control" placeholder=" Enter image 3" />
                             </div>
                             <div class="mb-3 col-md-6">
                                 <label asp-for="MoreDetail" class="form-label"></label>
