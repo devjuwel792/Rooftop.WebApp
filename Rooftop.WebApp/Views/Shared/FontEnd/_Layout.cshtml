@@ -6,8 +6,10 @@
 <partial name="Backend/_HtmlHeadPartial" />
 
 <body>
-  
-
+    <partial name="Fontend/_LoderPartial" />
+    <partial name="Fontend/_HeaderPartial" />
+    @RenderBody()
+    <partial name="Fontend/_FooterPartial" />
     <partial name="Backend/_ScriptPartial" />
 
     @await RenderSectionAsync("Scripts", required: false)

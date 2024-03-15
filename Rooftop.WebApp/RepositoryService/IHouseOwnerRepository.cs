@@ -8,4 +8,5 @@ namespace Rooftop.WebApp.RepositoryService;
 public interface IHouseOwnerRepository: IRepositoryService<HouseOwners, HouseOwnerVm>
 {
     IEnumerable<SelectListItem> Dropdown();
+    public int CurrentHouseOwner(HouseOwners houseOwners);
 }

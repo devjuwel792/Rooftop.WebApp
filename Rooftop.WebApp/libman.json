@@ -114,12 +114,19 @@
         "css/boxicons.min.css",
         "css/transformations.css"
       ]
+    },
+    {
+      "library": "poper@0.1.1",
+      "destination": "wwwroot/lib/poper/"
+    },
+    {
+      "library": "apexcharts@3.47.0",
+      "destination": "wwwroot/apexcharts/",
+      "files": [
+        "dist/apexcharts.css",
+        "dist/apexcharts.js",
+        "dist/apexcharts.min.js"
+      ]
     }
-  ,
-{
-  "provider": "unpkg",
-  "library": "poper@0.1.1",
-  "destination": "wwwroot/lib/poper/"
-}
-]
+  ]
 }

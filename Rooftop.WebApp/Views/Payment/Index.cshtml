@@ -1,0 +1,82 @@
+﻿@model IEnumerable<Rooftop.WebApp.ViewModel.PaymentVm>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/Backend/_Layout.cshtml";
+    int tId = 1;
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+
+<div class="card p-4">
+    <h5 class="card-header"> Payment Table </h5>
+    <div class="table-responsive text-nowrap">
+        <table class="table" id="PaymentTable">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.TrasnsId)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Email)
+                    </th>
+                    
+                    <th>
+                        @Html.DisplayNameFor(model => model.OrderTime)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.User)
+                    </th>
+                    <th>
+                        Payment
+                    </th>
+                    
+                </tr>
+            </thead>
+            <tbody class="table-border-bottom-0">
+                @foreach (var item in Model.Where(x => x.IsPaymentConfirmed))
+                {
+                    <tr>
+                        <td>
+                            @tId
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TrasnsId)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Email)
+                        </td>
+                       
+                        <td>
+                            @Html.DisplayFor(modelItem => item.OrderTime)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.User.UserName)
+                        </td>
+                        <td>
+                            <span class="badge bg-label-success me-1"> @((item.IsPaymentConfirmed) ? "Paid" : "Pending")</span>
+                        </td>
+                        
+                    </tr>
+                    tId++;
+                }
+                
+               
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(function () {
+            $('#PaymentTable').DataTable();
+        });
+    </script>
+
+}

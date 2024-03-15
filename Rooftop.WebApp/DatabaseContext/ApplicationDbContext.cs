@@ -11,5 +11,5 @@ public class ApplicationDbContext(DbContextOptions options) : DbContext(options)
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(ApplicationDbContext).Assembly);
     }
 
-public DbSet<Rooftop.WebApp.ViewModel.AdminVm> AdminVm { get; set; } = default!;
+
 }

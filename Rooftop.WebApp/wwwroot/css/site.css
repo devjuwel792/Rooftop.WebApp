@@ -8,9 +8,6 @@ html {
   }
 }
 
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
-}
 
 html {
   position: relative;
@@ -20,3 +17,29 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+
+img.card-img-top {
+    height: 187px;
+    object-fit: cover;
+}
+
+/* Input */
+.table .badge input {
+    color: #1cfb2f;
+    border-style: none;
+    background-color:transparent;
+}
+
+
+/* Image */
+.app-brand-link .app-brand-logo img {
+    transform: translatex(15px) translatey(0px);
+    padding-right: 6px;
+}
+
+/* Image */
+.layout-content-navbar .layout-container #layout-menu .demo .app-brand-link .app-brand-logo img {
+    width: 21% !important;
+}
+

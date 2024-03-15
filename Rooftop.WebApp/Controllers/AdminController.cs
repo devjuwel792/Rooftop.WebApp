@@ -44,6 +44,7 @@ public class AdminController : Controller
             if (admin != null)
             {
                 HttpContext.Session.SetString("adminEmail", admin.Email);
+                HttpContext.Session.Remove("HouseOwnerId");
 
             }
 
