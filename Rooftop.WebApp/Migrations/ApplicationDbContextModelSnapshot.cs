@@ -41,6 +41,14 @@ namespace Rooftop.WebApp.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Admin", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Email = "admin@gmail.com",
+                            Password = "12345"
+                        });
                 });
 
             modelBuilder.Entity("Rooftop.WebApp.Models.HouseOwners", b =>
@@ -66,6 +74,15 @@ namespace Rooftop.WebApp.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("HouseOwners", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Email = "houseowner@gmail.com",
+                            Name = "House Owner",
+                            Password = "12345"
+                        });
                 });
 
             modelBuilder.Entity("Rooftop.WebApp.Models.Payment", b =>
@@ -128,6 +145,15 @@ namespace Rooftop.WebApp.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("User", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Email = "user@gmail.com",
+                            Password = "12345",
+                            UserName = "User"
+                        });
                 });
 
             modelBuilder.Entity("Rooftop.WebApp.Models.farm", b =>
@@ -194,64 +220,6 @@ namespace Rooftop.WebApp.Migrations
                     b.ToTable("farm", (string)null);
                 });
 
-            modelBuilder.Entity("Rooftop.WebApp.ViewModel.AdminVm", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Password")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("AdminVm");
-                });
-
-            modelBuilder.Entity("Rooftop.WebApp.ViewModel.PaymentVm", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("CartItemsId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsPaymentConfirmed")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime?>("OrderTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("TrasnsId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CartItemsId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("PaymentVm");
-                });
-
             modelBuilder.Entity("Rooftop.WebApp.Models.Payment", b =>
                 {
                     b.HasOne("Rooftop.WebApp.Models.farm", "CartItems")
@@ -280,25 +248,6 @@ namespace Rooftop.WebApp.Migrations
                         .IsRequired();
 
                     b.Navigation("HouseOwners");
-                });
-
-            modelBuilder.Entity("Rooftop.WebApp.ViewModel.PaymentVm", b =>
-                {
-                    b.HasOne("Rooftop.WebApp.Models.farm", "CartItems")
-                        .WithMany()
-                        .HasForeignKey("CartItemsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Rooftop.WebApp.Models.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("CartItems");
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Rooftop.WebApp.Models.HouseOwners", b =>

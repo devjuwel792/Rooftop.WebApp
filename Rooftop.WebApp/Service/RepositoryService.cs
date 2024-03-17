@@ -74,8 +74,6 @@ public class RepositoryService<TEntity, IModel> : IRepositoryService<TEntity, IM
         var model = _mapper.Map<TEntity, IModel>(entity);
         return model;
     }
-
-
     public async Task<List<IModel>> GetAllAsync(params Expression<Func<TEntity, object>>[] includes)
     {
         var entities = await includes.Aggregate(DbSet.AsQueryable(), (current, include) => current.Include(include)).ToListAsync().ConfigureAwait(true);

@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Mono.TextTemplating;
 using Rooftop.WebApp.Models;
 using Rooftop.WebApp.RepositoryService;
 using Rooftop.WebApp.ViewModel;
@@ -51,13 +50,13 @@ public class UserController : Controller
         if (id == 0)
         {
             await userRepository.InsertAsync(userVm, cancellation);
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "Farm");
 
         }
         else
         {
             await userRepository.UpdateAsync(id, userVm, cancellation);
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "Farm");
         }
     }
     public async Task<ActionResult<UserVm>> Delete(int id, CancellationToken cancellation)
@@ -82,5 +81,45 @@ public class UserController : Controller
         return RedirectToAction("Login", "Admin");
 
     }
+    public IActionResult Login()
+    {
 
+        HttpContext.Session.GetInt32("UserId");
+
+        return View();
+
+    }
+    [HttpPost]
+    public IActionResult Login(User user)
+    {
+        var UId = userRepository.CurrentUser(user);
+        if (UId != 0)
+        {
+
+            if (user != null)
+            {
+                HttpContext.Session.SetInt32("UserId", UId);
+                HttpContext.Session.Remove("adminEmail");
+                HttpContext.Session.Remove("HouseOwnerId");
+            }
+
+
+            return RedirectToAction("Index", "Farm");
+        }
+        else
+        {
+            return View();
+        }
+
+    }
+    public IActionResult Logout()
+    {
+        if (HttpContext.Session.GetInt32("UserId") != null && HttpContext.Session.GetInt32("UserId") != 0)
+        {
+            HttpContext.Session.Remove("UserId");
+            return RedirectToAction("Index", "Home");
+        }
+        return View();
+
+    }
 }

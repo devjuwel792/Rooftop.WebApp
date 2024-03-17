@@ -1,41 +1,86 @@
 ﻿@model Rooftop.WebApp.ViewModel.HouseOwnerVm
 
+
+
+@using Microsoft.AspNetCore.Http;
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor accessor
 @{
-    ViewData["Title"] = "CreateOrEditRoofTop";
-    Layout = "~/Views/Shared/Backend/_Layout.cshtml";
+    ViewData["Title"] = "Create Or Edit House Owner";
+    if (accessor.HttpContext.Session.GetString("adminEmail") != null)
+    {
+        Layout = "~/Views/Shared/Backend/_Layout.cshtml";
+    }
+    else
+    {
+        Layout = "~/Views/Shared/Fontend/_Layout.cshtml";
+    }
+
+
 }
 
-<h1>create or edit HouseOwner</h1>
+<!-- Content -->
 
-<h4>HouseOwnerVm</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="createoreditHouseOwner">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control" />
-                <span asp-validation-for="Name" class="text-danger"></span>
+<div class="container-xxl">
+    <div class="authentication-wrapper authentication-basic container-p-y">
+        <div class="authentication-inner">
+            <!-- Register Card -->
+            <div class="card">
+                <div class="card-body">
+                    <!-- Logo -->
+                    <div class="app-brand justify-content-center">
+                        <a asp-action="Index" asp-controller="Home" class="app-brand-link gap-2">
+                            <h2 class="app-brand-logo demo">
+                                Root Top
+                            </h2>
+                            <span class="app-brand-text demo text-body fw-bold"></span>
+                        </a>
+                    </div>
+                    <!-- /Logo -->
+                    <h4 class="mb-2">Adventure starts here 🚀</h4>
+                    <p class="mb-4">Make your app management easy and fun!</p>
+
+                    <form asp-action="CreateOrEditHouseOwner" class="mb-3">
+                        <div class="mb-3">
+                            <label asp-for="Name" class="form-label"></label>
+                            <input type="text"
+                                   class="form-control"
+                                   asp-for="Name"
+                                   placeholder="Enter your username" />
+                        </div>
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                        <div class="mb-3">
+                            <label asp-for="Email" class="form-label"></label>
+                            <input class="form-control" asp-for="Email" placeholder="Enter your email" />
+                        </div>
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                        <div class="mb-3 form-password-toggle">
+                            <label class="form-label" asp-for="Password"></label>
+                            <div class="input-group input-group-merge">
+                                <input asp-for="Password"
+                                       class="form-control"
+                                       placeholder="Enter Your Password" />
+                                <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
+                            </div>
+                        </div>
+                        <span asp-validation-for="Password" class="text-danger"></span>
+
+
+                        <button class="btn btn-primary d-grid w-100">Sign up</button>
+                    </form>
+
+                    <p class="text-center">
+                        <span>Already have an account?</span>
+                        <a href="auth-login-basic.html">
+                            <span>Sign in instead</span>
+                        </a>
+                    </p>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="Email" class="control-label"></label>
-                <input asp-for="Email" class="form-control" />
-                <span asp-validation-for="Email" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Password" class="control-label"></label>
-                <input asp-for="Password" class="form-control" />
-                <span asp-validation-for="Password" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+            <!-- Register Card -->
+        </div>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+<!-- / Content -->
+
 

@@ -6,4 +6,5 @@ namespace Rooftop.WebApp.RepositoryService;
 
 public interface IUserRepository:IRepositoryService<User,UserVm>
 {
+    public int CurrentUser(User user);
 }

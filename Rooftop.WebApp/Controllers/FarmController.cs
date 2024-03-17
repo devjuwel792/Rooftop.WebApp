@@ -131,7 +131,14 @@ public class FarmController : Controller
     }
     public async Task<ActionResult<FarmVm>> Details(int id, CancellationToken cancellation)
     {
-        return View(await farmRepository.GetByIdAsync(id, cancellation));
+        var HO = HttpContext.Session.GetInt32("HouseOwnerId");
+        var user = HttpContext.Session.GetString("adminEmail");
+        var UId = HttpContext.Session.GetInt32("UserId");
+        if (user != null || (HO != null && HO != 0)|| (UId != null && UId != 0))
+        { 
+         return View(await farmRepository.GetByIdAsync(id, cancellation));
+        }
+        return RedirectToAction("Login", "User");
     }
 
     public ActionResult test(int id)

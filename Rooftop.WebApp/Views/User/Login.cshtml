@@ -1,7 +1,7 @@
 ﻿@model Rooftop.WebApp.ViewModel.UserVm
 @{
-    ViewData["Title"] = "Index";
-    Layout = "~/Views/Shared/Backend/_Layout.cshtml";
+ 
+    Layout = "~/Views/Shared/Fontend/_Layout.cshtml";
 }
 <h4>UserVm</h4>
 <hr />
@@ -9,11 +9,7 @@
     <div class="col-md-4">
         <form asp-action="Login">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="UserName" class="control-label"></label>
-                <input asp-for="UserName" class="form-control" />
-                <span asp-validation-for="UserName" class="text-danger"></span>
-            </div>
+            
             <div class="form-group">
                 <label asp-for="Email" class="control-label"></label>
                 <input asp-for="Email" class="form-control" />
@@ -25,7 +21,7 @@
                 <span asp-validation-for="Password" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Submit" class="btn btn-primary" />
             </div>
         </form>
     </div>
@@ -35,6 +31,4 @@
     <a asp-action="Index">Back to List</a>
 </div>
 
-            @section Styles{
-               
-            }
+           

@@ -1,7 +1,18 @@
 ﻿@model Rooftop.WebApp.ViewModel.UserVm
+@using Microsoft.AspNetCore.Http;
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor accessor
 @{
-    ViewData["Title"] = "Index";
-    Layout = "~/Views/Shared/Backend/_Layout.cshtml";
+    ViewData["Title"] = "CreateOrEditRoofTop";
+    if (accessor.HttpContext.Session.GetString("adminEmail") != null)
+    {
+        Layout = "~/Views/Shared/Backend/_Layout.cshtml";
+    }
+    else
+    {
+        Layout = "~/Views/Shared/Fontend/_Layout.cshtml";
+    }
+
+
 }
 <!-- Content -->
 

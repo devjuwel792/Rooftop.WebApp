@@ -51,28 +51,46 @@ public class HouseOwnerController : Controller
     [HttpPost]
     public async Task<ActionResult<HouseOwnerVm>> CreateOrEditHouseOwner(int id, HouseOwnerVm houseOwnerVm, CancellationToken cancellation)
     {
-      
-            if (id == 0)
-            {
-               
-                await houseOwnerRepository.InsertAsync(houseOwnerVm, cancellation);
-                return RedirectToAction("Index");
 
+        if (id == 0)
+        {
+
+            await houseOwnerRepository.InsertAsync(houseOwnerVm, cancellation);
+            var HO = new HouseOwners()
+            {
+                Email = houseOwnerVm.Email,
+                Password = houseOwnerVm.Password
+            };
+            var HOId = houseOwnerRepository.CurrentHouseOwner(HO);
+            var user = HttpContext.Session.GetString("adminEmail");
+            if (user != null)
+            {
+                return RedirectToAction("Index", "HouseOwner");
             }
             else
             {
-                await houseOwnerRepository.UpdateAsync(id, houseOwnerVm, cancellation);
-                return RedirectToAction("Index");
+                HttpContext.Session.SetInt32("HouseOwnerId", HOId);
+                HttpContext.Session.Remove("adminEmail");
+                return RedirectToAction("Details", "HouseOwner");
+
             }
 
-       
+
+        }
+        else
+        {
+            await houseOwnerRepository.UpdateAsync(id, houseOwnerVm, cancellation);
+            return RedirectToAction("Details", "HouseOwner");
+        }
+
+
 
     }
     public async Task<ActionResult<HouseOwnerVm>> Delete(int id, CancellationToken cancellation)
     {
-       
-        var user = HttpContext.Session.GetString("adminEmail");  
-        if (user != null )
+
+        var user = HttpContext.Session.GetString("adminEmail");
+        if (user != null)
         {
 
             if (id != 0)
@@ -94,7 +112,7 @@ public class HouseOwnerController : Controller
     public async Task<ActionResult<HouseOwnerVm>> Details(int id, CancellationToken cancellation)
     {
         var HO = HttpContext.Session.GetInt32("HouseOwnerId");
-       
+
         var user = HttpContext.Session.GetString("adminEmail");
         if (user != null || HO != 0)
         {
@@ -134,7 +152,7 @@ public class HouseOwnerController : Controller
             }
 
 
-            return RedirectToAction("Index","Home");
+            return RedirectToAction("Index", "Home");
         }
         else
         {

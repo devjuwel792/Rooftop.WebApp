@@ -2,6 +2,7 @@
 @inject Microsoft.AspNetCore.Http.IHttpContextAccessor accessor
 @{
     var HO = accessor.HttpContext.Session.GetInt32("HouseOwnerId");
+    var User = accessor.HttpContext.Session.GetInt32("UserId");
 }
 <div class="sub-header">
     <div class="container">
@@ -40,35 +41,45 @@
                         <li><a asp-action="Index" asp-controller="Home" class="active">Home</a></li>
                         <li><a asp-action="About" asp-controller="Home">About</a></li>
                         <li><a asp-action="Index" asp-controller="Farm">Roof Top </a></li>
-                        <li>
-                            @{
 
-                                if ((HO != null && HO != 0))
-                                {
+                        @{
+
+                            if ((HO != null && HO != 0))
+                            {
+                                <li>
                                     <a asp-action="Details" asp-controller="HouseOwner" asp-route-id="@HO"> &nbsp;&nbsp;&nbsp;My Roof Top</a>
-                                }
-                                
+                                </li>
                             }
+
+
+                        }
+
+
+                        @{
+
+                            if ((HO != null && HO != 0))
+                            {
+                                <li>
+                                    <a asp-action="CreateOreditRooftop" asp-controller="Farm"> &nbsp;&nbsp;&nbsp;Create Roof Top</a>
+                                </li>
+                            }
+
+                        }
+
+                        <li>
+                            @if ((User != null && User != 0))
+                            {
+                            <a asp-action="Logout" asp-controller="User"> Logout</a>
+                            }
+                            else
+                            {
+                            <a asp-action="Login" asp-controller="User"> Login </a>
+                            }
+                
                         </li>
                         <li>
                             @{
 
-                                if ((HO != null && HO != 0))
-                                {
-                                    <a asp-action="CreateOreditRooftop" asp-controller="Farm" > &nbsp;&nbsp;&nbsp;Create Roof Top</a>
-                                }
-                                
-                            }
-                        </li>
-                        <li>
-                            @{
-
-                            }
-                            <a asp-action="Login" asp-controller="User">Login</a> 
-                        </li>
-                        <li>
-                            @{
-                              
                                 if ((HO != null && HO != 0))
                                 {
                                     <a asp-action="Logout" asp-controller="HouseOwner"> &nbsp;&nbsp;&nbsp;Logout</a>
@@ -78,10 +89,20 @@
                                     <a asp-action="Login" asp-controller="HouseOwner"> &nbsp;&nbsp;&nbsp;Login as HouseOwner</a>
                                 }
                             }
-                            
+
                         </li>
                     </ul>
+                    <div class="dropdown">
+                        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Dropdown link
+                        </a>
 
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Action</a></li>
+                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        </ul>
+                    </div>
                     <a class='menu-trigger'>
                         <span>Menu</span>
                     </a>

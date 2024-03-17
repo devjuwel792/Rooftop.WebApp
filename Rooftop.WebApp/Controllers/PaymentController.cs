@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Rooftop.WebApp.RepositoryService;
 using Rooftop.WebApp.ViewModel;
+using System.Collections.Immutable;
 using System.Threading;
 
 namespace Rooftop.WebApp.Controllers;
@@ -21,9 +22,13 @@ public class PaymentController : Controller
        {
             ViewBag.path = HttpContext.Request.PathBase + HttpContext.Request.Path + HttpContext.Request.QueryString;
             var data = await paymentRepository.GetAllAsync(x=>x.User);
-            
-            return View(data );
-       }
+            //var result = data.Where(x=>x.IsPaymentConfirmed).ToList();
+            //var result = from obj in data
+            //             where (obj.IsPaymentConfirmed)
+            //             select obj;
+            var result = data.AsQueryable().Where(x=>x.IsPaymentConfirmed).ToList();
+            return View(result);
+       } 
         return RedirectToAction("Login", "Admin");
 
     }
@@ -38,7 +43,8 @@ public class PaymentController : Controller
         if (user != null)
         {
             var data = await paymentRepository.GetAllAsync(x => x.User);
-            return View(data);
+            var result = data.AsQueryable().Where(x => x.IsPaymentConfirmed).ToList();
+            return View(result);
         }
         return RedirectToAction("Login", "Admin");
        
@@ -47,12 +53,17 @@ public class PaymentController : Controller
     [HttpPost]
     public async Task<ActionResult<HouseOwnerVm>> Pending(int id,  CancellationToken cancellationToken)
     {
-       
-        var payment = await paymentRepository.GetByIdAsync(id, cancellationToken);
-        payment.IsPaymentConfirmed = true;
-        
-        await paymentRepository.UpdateAsync(id, payment, cancellationToken);
+        var user = HttpContext.Session.GetString("adminEmail");
+        if (user != null)
+        {
+            var payment = await paymentRepository.GetByIdAsync(id, cancellationToken);
+            payment.IsPaymentConfirmed = true;
+
+            await paymentRepository.UpdateAsync(id, payment, cancellationToken);
             return RedirectToAction("Index");
+        }
+        return RedirectToAction("Login", "Admin");
+       
     }
 
 }

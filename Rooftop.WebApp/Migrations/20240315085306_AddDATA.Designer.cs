@@ -12,8 +12,8 @@ using Rooftop.WebApp.DatabaseContext;
 namespace Rooftop.WebApp.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240306100554_ConnectDatabase")]
-    partial class ConnectDatabase
+    [Migration("20240315085306_AddDATA")]
+    partial class AddDATA
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -44,6 +44,14 @@ namespace Rooftop.WebApp.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Admin", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Email = "admin@gmail.com",
+                            Password = "12345"
+                        });
                 });
 
             modelBuilder.Entity("Rooftop.WebApp.Models.HouseOwners", b =>
@@ -54,8 +62,9 @@ namespace Rooftop.WebApp.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("Email")
-                        .HasColumnType("int");
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -68,6 +77,15 @@ namespace Rooftop.WebApp.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("HouseOwners", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Email = "houseowner@gmail.com",
+                            Name = "House Owner",
+                            Password = "12345"
+                        });
                 });
 
             modelBuilder.Entity("Rooftop.WebApp.Models.Payment", b =>
@@ -95,9 +113,14 @@ namespace Rooftop.WebApp.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("CartItemsId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Payment", (string)null);
                 });
@@ -125,6 +148,15 @@ namespace Rooftop.WebApp.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("User", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Email = "user@gmail.com",
+                            Password = "12345",
+                            UserName = "User"
+                        });
                 });
 
             modelBuilder.Entity("Rooftop.WebApp.Models.farm", b =>
@@ -142,6 +174,9 @@ namespace Rooftop.WebApp.Migrations
                     b.Property<string>("GoogleMap")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("HouseOwnersId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Image1")
                         .IsRequired()
@@ -183,6 +218,8 @@ namespace Rooftop.WebApp.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("HouseOwnersId");
+
                     b.ToTable("farm", (string)null);
                 });
 
@@ -194,7 +231,36 @@ namespace Rooftop.WebApp.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Rooftop.WebApp.Models.User", "User")
+                        .WithMany("Payments")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
                     b.Navigation("CartItems");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Rooftop.WebApp.Models.farm", b =>
+                {
+                    b.HasOne("Rooftop.WebApp.Models.HouseOwners", "HouseOwners")
+                        .WithMany("Farms")
+                        .HasForeignKey("HouseOwnersId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("HouseOwners");
+                });
+
+            modelBuilder.Entity("Rooftop.WebApp.Models.HouseOwners", b =>
+                {
+                    b.Navigation("Farms");
+                });
+
+            modelBuilder.Entity("Rooftop.WebApp.Models.User", b =>
+                {
+                    b.Navigation("Payments");
                 });
 #pragma warning restore 612, 618
         }

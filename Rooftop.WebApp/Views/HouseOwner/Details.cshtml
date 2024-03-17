@@ -2,8 +2,17 @@
 @using Microsoft.AspNetCore.Http;
 @inject Microsoft.AspNetCore.Http.IHttpContextAccessor accessor
 @{
-    ViewData["Title"] = "Details";
-    Layout = "~/Views/Shared/Fontend/_Layout.cshtml";
+   
+    if (accessor.HttpContext.Session.GetString("adminEmail") != null)
+    {
+        Layout = "~/Views/Shared/Backend/_Layout.cshtml";
+    }
+    else
+    {
+        Layout = "~/Views/Shared/Fontend/_Layout.cshtml";
+    }
+
+
 }
 @{
     var HO = accessor.HttpContext.Session.GetInt32("HouseOwnerId");

@@ -3,10 +3,19 @@
 @inject Microsoft.AspNetCore.Http.IHttpContextAccessor accessor
 @{
     ViewData["Title"] = "CreateOrEditRoofTop";
-    Layout = "~/Views/Shared/Fontend/_Layout.cshtml";
+    if (accessor.HttpContext.Session.GetString("adminEmail")!=null)
+    {
+        Layout = "~/Views/Shared/Backend/_Layout.cshtml";
+    }
+    else
+    {
+        Layout = "~/Views/Shared/Fontend/_Layout.cshtml";
+    }
+
+    
 }
 
-<h1>CreateOrEditRoofTop</h1>
+
 
 
 
@@ -17,7 +26,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="card mb-4">
-                <h5 class="card-header">Profile Details</h5>
+                <h5 class="card-header">Create Or Edit RoofTop</h5>
 
                 <!-- Account -->
                 <form asp-action="CreateOrEditRoofTop" asp-controller="Farm" method="post" enctype="multipart/form-data">
@@ -53,7 +62,7 @@
                             @if (accessor.HttpContext.Session.GetString("adminEmail") != null)
                             {
                                 <div class="mb-3 col-md-6">
-                                    <label asp-for="HouseOwnersId" class="form-label"></label>
+                                    <label asp-for="HouseOwnersId" class="form-label">House Owners</label>
                                     <select asp-for="HouseOwnersId" asp-items="@ViewBag.HouseOwners" class="select2 form-select" autofocus>
                                         <option>--Select House Owner--</option>
 

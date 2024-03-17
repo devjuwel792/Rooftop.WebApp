@@ -8,5 +8,16 @@ namespace Rooftop.WebApp.RepositoryService;
 
 public class UserRepository(ApplicationDbContext dbContext, IMapper mapper) : RepositoryService<User, UserVm>(dbContext, mapper), IUserRepository
 {
-    
+    public int CurrentUser(User user)
+    {
+        foreach (var item in DbSet)
+        {
+            if (item.Email == user.Email && item.Password == user.Password)
+            {
+
+                return item.Id;
+            }
+        }
+        return 0;
+    }
 }

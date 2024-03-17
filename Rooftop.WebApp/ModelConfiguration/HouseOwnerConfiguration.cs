@@ -10,5 +10,13 @@ public class HouseOwnerConfiguration : IEntityTypeConfiguration<HouseOwners>
     {
         builder.ToTable(nameof(HouseOwners));
         builder.HasKey(x => x.Id);
+        builder.HasData(new
+        {
+            Id = 1,
+            Email = "houseowner@gmail.com",
+            Password = "12345",
+            Name = "House Owner",
+
+        });
     }
 }
