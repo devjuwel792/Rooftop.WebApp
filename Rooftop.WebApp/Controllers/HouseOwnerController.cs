@@ -40,9 +40,15 @@ public class HouseOwnerController : Controller
         }
         else
         {
-            var data = await houseOwnerRepository.GetByIdAsync(id, cancellationToken);
-            data.Password = null;
-            return View(data);
+            var HO = HttpContext.Session.GetInt32("HouseOwnerId");
+            var user = HttpContext.Session.GetString("adminEmail");
+            if (user != null || HO != 0)
+            {
+                var data = await houseOwnerRepository.GetByIdAsync(id, cancellationToken);
+                data.Password = null;
+                return View(data);
+            }
+            return RedirectToAction("Login");
         }
 
 
