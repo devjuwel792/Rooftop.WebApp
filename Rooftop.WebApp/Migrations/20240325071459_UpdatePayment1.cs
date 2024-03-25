@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Rooftop.WebApp.Migrations
 {
     /// <inheritdoc />
-    public partial class AddDATA : Migration
+    public partial class UpdatePayment1 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -113,7 +113,7 @@ namespace Rooftop.WebApp.Migrations
                         column: x => x.CartItemsId,
                         principalTable: "farm",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.InsertData(

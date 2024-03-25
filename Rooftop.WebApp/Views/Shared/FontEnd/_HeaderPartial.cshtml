@@ -47,24 +47,23 @@
                             if ((HO != null && HO != 0))
                             {
                                 <li>
-                                    <a asp-action="Details" asp-controller="HouseOwner" asp-route-id="@HO"> &nbsp;&nbsp;&nbsp;My Roof Top</a>
+                                    <a asp-action="Details" asp-controller="HouseOwner" asp-route-id="@HO"> My Roof Top</a>
                                 </li>
-                            }
-
-
-                        }
-
-
-                        @{
-
-                            if ((HO != null && HO != 0))
-                            {
                                 <li>
-                                    <a asp-action="CreateOreditRooftop" asp-controller="Farm"> &nbsp;&nbsp;&nbsp;Create Roof Top</a>
+                                    <a asp-action="CreateOreditRooftop" asp-controller="Farm"> Create Roof Top</a>
                                 </li>
+                                <li>
+                                    <a asp-action="Index" asp-controller="Payment"> Create Roof Top</a>
+                                </li>
+                                
                             }
 
+
                         }
+
+
+                      
+                      
 
                         <li>
                             @if ((User != null && User != 0))
@@ -91,18 +90,9 @@
                             }
 
                         </li>
+                        <li></li>
                     </ul>
-                    <div class="dropdown">
-                        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Dropdown link
-                        </a>
-
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
-                    </div>
+                  
                     <a class='menu-trigger'>
                         <span>Menu</span>
                     </a>

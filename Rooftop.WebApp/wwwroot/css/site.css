@@ -29,3 +29,9 @@ img.card-img-top {
     width: 21% !important;
 }
 
+/* Image */
+#PaymentTable tr img {
+    width: 100px !important;
+}
+
+

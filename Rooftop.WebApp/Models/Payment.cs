@@ -6,7 +6,7 @@ public class Payment
     public string TrasnsId { get; set; }
     public string Email { get; set; }
     public bool IsPaymentConfirmed { get; set; }
-    public int CartItems { get; set; }
+    public int CartItemsId { get; set; }
     public DateTime? OrderTime { get; set; }
     public int UserId { get; set; }
     public User User { get; set; }

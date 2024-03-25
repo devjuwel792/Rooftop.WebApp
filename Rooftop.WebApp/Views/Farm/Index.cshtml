@@ -38,7 +38,8 @@
                             @item.SomeDetail
                         </p>
                       
-                        <a asp-action="Details" asp-controller="Farm" asp-route-id="@item.Id" class="btn btn-outline-primary">show Mero</a>
+                        <a asp-action="Details" asp-controller="Farm" asp-route-id="@item.Id" class="btn btn-outline-primary mb-2">show Mero</a>
+                        <a asp-action="BookNow" asp-controller="Payment" asp-route-id="@item.Id" class="btn btn-outline-primary mb-2">Book Now</a>
                         @{
 
                             if ((HO != null && HO != 0 && HO == item.HouseOwnersId) || accessor.HttpContext.Session.GetString("adminEmail") != null)

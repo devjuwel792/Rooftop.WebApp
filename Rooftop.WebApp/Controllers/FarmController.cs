@@ -26,7 +26,6 @@ public class FarmController : Controller
         var user = HttpContext.Session.GetString("adminEmail");
         if (user != null || (HO != null && HO != 0))
         {
-
             ViewBag.HouseOwners = houseOwnerRepository.Dropdown();
             ViewBag.path = HttpContext.Request.PathBase + HttpContext.Request.Path + HttpContext.Request.QueryString;
             if (id == 0)
@@ -94,6 +93,7 @@ public class FarmController : Controller
             }
             else
             {
+
                 await farmRepository.UpdateAsync(id, farmVm, cancellation);
                 return RedirectToAction("Index");
             }

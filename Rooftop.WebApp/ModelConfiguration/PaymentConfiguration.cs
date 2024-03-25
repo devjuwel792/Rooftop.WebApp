@@ -11,6 +11,7 @@ public class PaymentConfiguration: IEntityTypeConfiguration<Payment>
         builder.ToTable(nameof(Payment));
         builder.HasKey(x => x.Id); 
         builder.HasOne(x => x.User).WithMany(x => x.Payments).HasForeignKey(x => x.UserId).OnDelete(DeleteBehavior.Restrict);
+        builder.HasOne(x => x.farm).WithMany(x => x.Farms).HasForeignKey(x => x.CartItemsId).OnDelete(DeleteBehavior.Restrict);
     }
 }
 

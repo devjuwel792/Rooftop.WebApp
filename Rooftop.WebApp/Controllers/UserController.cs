@@ -48,8 +48,18 @@ public class UserController : Controller
     public async Task<ActionResult<UserVm>> CreateOrEditUser(int id, UserVm userVm, CancellationToken cancellation)
     {
         if (id == 0)
-        {
-            await userRepository.InsertAsync(userVm, cancellation);
+        {await userRepository.InsertAsync(userVm, cancellation);
+           
+            var user = new UserVm()
+            {
+                Email = userVm.Email,
+                Password = userVm.Password
+            };
+            var userId = userRepository.CurrentUser(user);
+            HttpContext.Session.SetInt32("UserId", userId);
+            HttpContext.Session.Remove("adminEmail");
+            HttpContext.Session.Remove("HouseOwnerId");
+
             return RedirectToAction("Index", "Farm");
 
         }
@@ -90,7 +100,7 @@ public class UserController : Controller
 
     }
     [HttpPost]
-    public IActionResult Login(User user)
+    public IActionResult Login(UserVm user)
     {
         var UId = userRepository.CurrentUser(user);
         if (UId != 0)

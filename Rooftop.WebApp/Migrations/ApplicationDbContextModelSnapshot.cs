@@ -222,10 +222,10 @@ namespace Rooftop.WebApp.Migrations
 
             modelBuilder.Entity("Rooftop.WebApp.Models.Payment", b =>
                 {
-                    b.HasOne("Rooftop.WebApp.Models.farm", "CartItems")
-                        .WithMany()
+                    b.HasOne("Rooftop.WebApp.Models.farm", "farm")
+                        .WithMany("Farms")
                         .HasForeignKey("CartItemsId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("Rooftop.WebApp.Models.User", "User")
@@ -234,9 +234,9 @@ namespace Rooftop.WebApp.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.Navigation("CartItems");
-
                     b.Navigation("User");
+
+                    b.Navigation("farm");
                 });
 
             modelBuilder.Entity("Rooftop.WebApp.Models.farm", b =>
@@ -258,6 +258,11 @@ namespace Rooftop.WebApp.Migrations
             modelBuilder.Entity("Rooftop.WebApp.Models.User", b =>
                 {
                     b.Navigation("Payments");
+                });
+
+            modelBuilder.Entity("Rooftop.WebApp.Models.farm", b =>
+                {
+                    b.Navigation("Farms");
                 });
 #pragma warning restore 612, 618
         }

@@ -1,0 +1,23 @@
+﻿@model Rooftop.WebApp.ViewModel.PaymentVm
+@using Microsoft.AspNetCore.Http;
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor accessor
+@{
+    ViewData["Title"] = "CreateOrEditRoofTop";
+    if (accessor.HttpContext.Session.GetString("adminEmail") != null)
+    {
+        Layout = "~/Views/Shared/Backend/_Layout.cshtml";
+    }
+    else
+    {
+        Layout = "~/Views/Shared/Fontend/_Layout.cshtml";
+    }
+
+}
+<div class="row my-5">
+    <div class="container">
+        <form asp-action="PaymentSuccess">
+            <input asp-for="TrasnsId" placeholder="Enter Transaction Id" class="form-control mb-3" />
+            <input type="submit" value="Confirm payment" class="form-control" />
+        </form>
+    </div>
+</div>

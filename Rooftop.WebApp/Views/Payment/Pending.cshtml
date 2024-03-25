@@ -30,6 +30,12 @@
                         @Html.DisplayNameFor(model => model.User)
                     </th>
                     <th>
+                        Roof Top
+                    </th>
+                    <th>
+                        House Owner
+                    </th>
+                    <th>
                         Payment
                     </th>
                     
@@ -54,6 +60,13 @@
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.User.UserName)
+                        </td>
+                        <td>
+                            <img style="max-width:100px !important" src="~/img/@Html.DisplayFor(modelItem => item.farm.Image1)" />
+
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.farm.HouseOwners.Name)
                         </td>
                         <td>
                             <form asp-action="pending" method="post">

@@ -8,7 +8,7 @@ namespace Rooftop.WebApp.RepositoryService;
 
 public class UserRepository(ApplicationDbContext dbContext, IMapper mapper) : RepositoryService<User, UserVm>(dbContext, mapper), IUserRepository
 {
-    public int CurrentUser(User user)
+    public int CurrentUser(UserVm user)
     {
         foreach (var item in DbSet)
         {

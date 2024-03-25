@@ -77,6 +77,7 @@ public class HouseOwnerController : Controller
             {
                 HttpContext.Session.SetInt32("HouseOwnerId", HOId);
                 HttpContext.Session.Remove("adminEmail");
+                HttpContext.Session.Remove("UserId");
                 return RedirectToAction("Details", "HouseOwner");
 
             }
@@ -155,6 +156,7 @@ public class HouseOwnerController : Controller
             {
                 HttpContext.Session.SetInt32("HouseOwnerId", HOId);
                 HttpContext.Session.Remove("adminEmail");
+                HttpContext.Session.Remove("UserId");
             }
 
 
