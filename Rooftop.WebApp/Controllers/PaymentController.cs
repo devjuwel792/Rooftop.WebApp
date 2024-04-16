@@ -29,6 +29,7 @@ public class PaymentController : Controller
             //             where (obj.IsPaymentConfirmed)
             //             select obj;
             var result = data.AsQueryable().Where(x => x.IsPaymentConfirmed).ToList();
+            result.Reverse();
             return View(result);
         }
         return RedirectToAction("Login", "Admin");
@@ -43,6 +44,7 @@ public class PaymentController : Controller
         {
             var data = await paymentRepository.GetAllAsync(x => x.User, x => x.farm, x => x.farm.HouseOwners);
             var result = data.AsQueryable().Where(x => !x.IsPaymentConfirmed).ToList();
+            result.Reverse();
             return View(result);
         }
         return RedirectToAction("Login", "Admin");
